@@ -1,0 +1,52 @@
+---
+title: "s"
+author: "Gonzalo Peña"
+date: "2024-06-27"
+output: html_document
+---
+
+```{r}
+install.packages("sf")
+install.packages("ggplot2")
+install.packages("RColorBrewer")  # Opcional, para la paleta de colores
+
+```
+
+```{r}
+library(sf)
+library(ggplot2)
+library(RColorBrewer)  # Opcional
+
+```
+
+```{r}
+theMapAndData <- st_read("peru_provincial_simple-2.geojson")
+
+```
+
+
+```{r}
+ggplot(data = theMapAndData) +
+  geom_sf(aes(fill = Cantidad), color = "gray") +
+  scale_fill_gradientn(colours = brewer.pal(9, "YlOrRd"), na.value = "white", name = "Cantidad") +
+  theme_minimal() +
+  ggtitle("Tasa de centros por provincia (cien mil habitantes) - MAPA DE CALOR") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+```{r}
+install.packages("RColorBrewer")
+```
+
+
+```{r}
+install.packages("sf")
+install.packages("ggplot2")
+
+```
+
+
+
+
+

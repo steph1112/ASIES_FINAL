@@ -1,0 +1,51 @@
+---
+title: "richi_ASIES_final"
+output: html_document
+date: "2024-06-27"
+---
+
+```{r}
+install.packages("sf")
+install.packages("ggplot2")
+install.packages("RColorBrewer")  # Opcional, para la paleta de colores
+
+```
+```{r}
+library(sf)
+library(ggplot2)
+library(RColorBrewer)  # Opcional
+
+```
+
+```{r}
+MapAndData <- st_read("C:/Users/Ricardo/Desktop/ASIES-Herramientas cuantitativas/TF/TFuu/richiespacial.geojson")
+
+```
+```{r}
+ggplot(data = MapAndData) +
+  geom_sf(aes(fill = profesionalesx100mil), color = "gray") +
+  scale_fill_gradientn(colours = brewer.pal(9, "YlOrRd"), na.value = "white", name = "Cantidad") +
+  theme_minimal() +
+  ggtitle("Profesionales de la salud por provincia (cien mil habitantes) - MAPA DE CALOR") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+```{r}
+library(sf)
+library(ggplot2)
+library(reticulate)
+```
+
+```{r}
+# Importar los datos
+Prof100 <- st_read("C:/Users/Ricardo/Desktop/ASIES-Herramientas cuantitativas/TF/TFuu/richiespacial.gpkg")
+# Crear el mapa
+ggplot(Prof100) +
+  geom_sf(aes(fill = quadrant_names), color = "white", size = 0.1) +
+  scale_fill_manual(values = c("ghostwhite", "red", "green", "black", "orange")) +
+  theme_minimal() +
+  theme(legend.position = c(-0.5, 0.5)) +
+  ggtitle("Spots and Outliers")
+```
+
